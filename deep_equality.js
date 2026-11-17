@@ -1,9 +1,10 @@
 
-function areObjects(value1, value2) {
-    if (value1 === null || value2 === null) return false;
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
-        return isEqual(Array.isArray(value1), Array.isArray(value2));
-    }
+function type(value) {
+    if (value === null) return "null";
+    if (value === undefined) return "undefined";
+    if (value === NaN) return "NaN";
+    if (Array.isArray(value)) return "array";
+    return typeof value;
 }
 
 function areObjectEqual(object1, object2) {
@@ -14,9 +15,43 @@ function areObjectEqual(object1, object2) {
     }
     return true;
 }
+function areTypeEqual(value1, value2) {
+    return type(value1) === type(value2);
+}
+
+function areValueEqual(value1, value2) {
+    return value1 === value2;
+}
+
+function areArrayEqual(value1, value2) {
+    if (value1.length !== value2.length) return false;
+    for (let i = 0; i < value1.length; i++) {
+        if (!isEqual(value1[i], value2[i])) return false;
+    }
+    return true;
+}
 
 function isEqual(value1, value2) {
-    if (areObjects(value1, value2)) return areObjectEqual(value1, value2);
+
+    if (!areTypeEqual(value1, value2)) return false;
+
+    switch (type(value1)) {
+        case "number":
+            return areValueEqual(value1, value2);
+        case "string":
+            return areArrayEqual(value1, value2);
+        case "null":
+            return areValueEqual(value1, value2);
+        case "NaN":
+            return areValueEqual(value1, value1);
+        case "undefined":
+            return areValueEqual(value1, value1);
+        case "array":
+            return areArrayEqual(value1, value2);
+        case "object":
+            return areObjectEqual(value1, value2);
+    }
+
     return value1 === value2;
 }
 

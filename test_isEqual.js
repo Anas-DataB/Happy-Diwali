@@ -51,6 +51,24 @@ function main() {
     ];
     const nullAndUndefinedTests = [
         {
+            title: "both NaN should be equal",
+            input1: NaN,
+            input2: NaN,
+            expected: true
+        },
+        {
+            title: "both undefined should be equal",
+            input1: undefined,
+            input2: undefined,
+            expected: true
+        },
+        {
+            title: "both null should be equal",
+            input1: null,
+            input2: null,
+            expected: true
+        },
+        {
             title: "check for undefined and null",
             input1: undefined,
             input2: null,
