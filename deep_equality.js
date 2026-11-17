@@ -36,23 +36,23 @@ function isEqual(value1, value2) {
     if (!areTypeEqual(value1, value2)) return false;
 
     switch (type(value1)) {
-        case "number":
-            return areValueEqual(value1, value2);
-        case "string":
-            return areArrayEqual(value1, value2);
-        case "null":
-            return areValueEqual(value1, value2);
-        case "NaN":
-            return areValueEqual(value1, value1);
-        case "undefined":
-            return areValueEqual(value1, value1);
+        // case "number":
+        //     return areValueEqual(value1, value2);
+        // case "string":
+        //     return areArrayEqual(value1, value2);
+        // case "null":
+        //     return areValueEqual(value1, value2);
+        // case "NaN":
+        //     return areValueEqual(value1, value1);
+        // case "undefined":
+        //     return areValueEqual(value1, value1);
         case "array":
             return areArrayEqual(value1, value2);
         case "object":
             return areObjectEqual(value1, value2);
     }
 
-    return value1 === value2;
+    return areValueEqual(value1, value2);
 }
 
 module.exports = {
